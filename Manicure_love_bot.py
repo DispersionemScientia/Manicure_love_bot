@@ -24,14 +24,14 @@ START_COMMAND ="""
 Для этого вам помогут кнопочки снизу. Если ничего не понятно,то сходите к врач... тыкните кнопку 'Помощь❓'</em>
 """
 
-PHOTO_WORK = [InputFile("static/work1.jpg"),
-              InputFile("static/work2.jpg"),
-              InputFile("static/work3.jpg"),
-              InputFile("static/work5.jpg"),
-              InputFile("static/work6.jpg"),
-              InputFile("static/work7.jpg"),
-              InputFile("static/work8.jpg"),
-              InputFile("static/work9.jpg")]
+PHOTO_WORK = ["./static/work1.jpg",
+              "./static/work2.jpg",
+              "./static/work3.jpg",
+              "./static/work5.jpg",
+              "./static/work6.jpg",
+              "./static/work7.jpg",
+              "./static/work8.jpg",
+              "./static/work9.jpg"]
 
 @dp.message_handler(Text(equals="Помощь❓"))
 async def help_command(message: types.Message):
@@ -60,7 +60,7 @@ async def records_command(message: types.Message):
 
 @dp.message_handler(Text(equals="Прайс💅"))
 async def price_command(message: types.Message):
-    photo = InputFile("static/price.jpg")
+    photo = open("./static/price.jpg", "rb")
     await bot.send_photo(chat_id=message.chat.id,
                          photo=photo)
     await message.delete()
@@ -68,8 +68,9 @@ async def price_command(message: types.Message):
 @dp.message_handler(Text(equals="Мои работы❤️"))
 async def price_command(message: types.Message):
     for photo in PHOTO_WORK:
+        photo_open = open(photo, "rb")
         await bot.send_photo(chat_id=message.chat.id,
-                         photo=photo)
+                         photo=photo_open)
     await message.delete()
 
 # @dp.message_handler(Text(equals='Веб версия'))
