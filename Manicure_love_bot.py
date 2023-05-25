@@ -2,7 +2,7 @@ import logging
 import requests
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.dispatcher.filters import Text
-from aiogram.types import InputFile
+
 
 from keyboard_bot import kb, ikb
 
@@ -63,6 +63,7 @@ async def price_command(message: types.Message):
     photo = open("./static/price.jpg", "rb")
     await bot.send_photo(chat_id=message.chat.id,
                          photo=photo)
+    photo.close()
     await message.delete()
 
 @dp.message_handler(Text(equals="Мои работы❤️"))
@@ -71,6 +72,7 @@ async def price_command(message: types.Message):
         photo_open = open(photo, "rb")
         await bot.send_photo(chat_id=message.chat.id,
                          photo=photo_open)
+        photo_open.close()
     await message.delete()
 
 # @dp.message_handler(Text(equals='Веб версия'))
