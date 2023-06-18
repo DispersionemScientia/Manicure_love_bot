@@ -6,7 +6,9 @@ from aiogram.dispatcher.filters import Text
 
 from keyboard_bot import kb, ikb
 
-API_TOKEN = "5975881093:AAFdTKi8rdjSw4Pl5xP0leyR4KE2CjAL_oA"
+
+with open("token.txt") as f:
+    API_TOKEN = f.read().strip()
 
 logging.basicConfig(level=logging.INFO)
 
